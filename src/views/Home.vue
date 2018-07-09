@@ -122,10 +122,13 @@
     import moment from 'moment'
     import { mapGetters, mapActions } from 'vuex'
     import BookForm from '@/components/BookForm.vue'
+    import Cart from '@/components/Cart.vue'
+
     export default {
         name: 'home',
         components: {
             BookForm,
+            Cart
         },
         data() {
             return {

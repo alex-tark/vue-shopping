@@ -1,26 +1,19 @@
 <template>
     <div id="app">
-        <div id="menu" class="flex w-100">
-            <a class="flex flex-column tr w-60">
-                <router-link to="/">Sign up</router-link>
-            </a>
-
-            <a class="flex flex-column tc w-20">
-                <router-link to="/">Login</router-link>
-            </a>
-
-            <a class="flex flex-column tc w-20">
-                Cart
-            </a>
-        </div>
-
+        <Menu/>
         <router-view/>
     </div>
 </template>
 
 <script>
+    import Menu from "./components/Menu";
+
     export default {
-        name: "App"
+        name: "App",
+        components: {Menu},
+        comments: {
+            Menu
+        }
     }
 </script>
 
@@ -34,8 +27,5 @@
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
-    }
-    #menu {
-        padding-top: 20px;
     }
 </style>
