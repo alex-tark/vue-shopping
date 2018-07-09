@@ -1,7 +1,7 @@
 <template>
     <div class="error">
-        <h1>Страница не найдена</h1>
-        <router-link to="/">Перейти на главную</router-link>
+        <h1>Page not found!</h1>
+        <router-link to="/">Back</router-link>
     </div>
 </template>
 

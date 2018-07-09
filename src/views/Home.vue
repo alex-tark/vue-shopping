@@ -1,7 +1,5 @@
 <template>
     <div class="home pv4">
-        <h1 class="tc w-100">Книги</h1>
-
         <div class="pa3 br3 bg-near-white w-100">
             <div class="flex">
                 <div class="flex flex-column items-start w-25">
