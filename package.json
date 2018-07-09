@@ -1,0 +1,53 @@
+{
+  "name": "vue-shopping",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple Vue.js(2.x.x) shopping card example using ElementUI view",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "PORT=3030 HOST=localhost vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alex-tark/1wix-fullstack.git"
+  },
+  "keywords": [
+    "vue"
+  ],
+  "author": "zinin.alexander21@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alex-tark/vue-shopping/issues"
+  },
+  "homepage": "https://github.com/alex-tark/vue-shopping#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.0.0",
+    "element-ui": "^2.4.1",
+    "esm": "^3.0.52",
+    "faker": "^4.1.0",
+    "moment": "^2.22.2",
+    "qs": "^6.5.2",
+    "tachyons": "^4.10.0",
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-rc.3",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.3",
+    "@vue/cli-service": "^3.0.0-rc.3",
+    "@vue/eslint-config-airbnb": "^3.0.0-rc.3",
+    "node-sass": "^4.9.0",
+    "nodemon": "^1.17.5",
+    "sass-loader": "^7.0.3",
+    "vue-template-compiler": "^2.5.16"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
