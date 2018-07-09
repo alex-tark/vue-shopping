@@ -28,8 +28,11 @@
                 :visible.sync="dialogVisible"
                 @close="handleDialogClose">
             <Cart/>
+
             <span slot="footer" class="dialog-footer">
-                <el-button type="primary" @click="handleDialogSubmit">Submit</el-button>
+                <el-button type="warning" @click="handleDialogSubmit">
+                    <b>Confirm</b>
+                </el-button>
             </span>
         </el-dialog>
     </div>
