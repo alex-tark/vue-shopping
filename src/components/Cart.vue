@@ -1,5 +1,5 @@
 <template>
-    <div class="pa4 ba b--black-10">
+    <div class="pa4">
     </div>
 </template>
 

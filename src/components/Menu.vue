@@ -16,27 +16,48 @@
                     Log in
                 </el-menu-item>
 
-                <el-button @click="handleCart" class="cart w-10 hover-bg-white" icon="el-icon-goods">
+                <el-button @click="handleDialogOpen" class="cart w-10 hover-bg-white" icon="el-icon-goods">
                     Cart
                 </el-button>
             </el-menu>
         </el-row>
+
+        <el-dialog
+                title="Cart"
+                width="30%"
+                :visible.sync="dialogVisible"
+                @close="handleDialogClose">
+            <Cart/>
+            <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="handleDialogSubmit">Submit</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
 <script>
+    import Cart from './Cart.vue'
+
     export default {
         name: 'menu',
-        props: {
+        components: {
+            Cart
         },
         data() {
             return {
-                activeIndex: '/'
+                activeIndex: '/',
+                dialogVisible: false
             }
         },
         methods: {
-            handleCart() {
-                console.log('handle cart!');
+            handleDialogOpen(index, item) {
+                this.dialogVisible = true
+            },
+            handleDialogClose() {
+                this.dialogVisible = false
+            },
+            handleDialogSubmit() {
+                this.dialogVisible = false
             }
         }
     }
