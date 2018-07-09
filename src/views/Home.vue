@@ -46,12 +46,6 @@
             </div>
         </div>
 
-        <el-button
-                type="primary"
-                plain icon="el-icon-plus"
-                class="mt4 w-auto"
-                @click="handleDialogOpen">Добавить книгу</el-button>
-
         <el-table
                 class="w-100 mt4"
                 :data.sync="list">
@@ -103,18 +97,6 @@
                     :total="total">
             </el-pagination>
         </div>
-
-        <el-dialog
-                title="Новая книга"
-                width="30%"
-                :visible.sync="dialogVisible"
-                @close="handleDialogClose">
-            <BookForm ref="book" :book="book"/>
-            <span slot="footer" class="dialog-footer">
-        <el-button @click="handleDialogClose">Назад</el-button>
-        <el-button type="primary" @click="handleDialogSubmit">Принять</el-button>
-      </span>
-        </el-dialog>
     </div>
 </template>
 
@@ -160,12 +142,6 @@
             formatDate({ date }) {
                 return moment(date).format('DD.MM.YYYY')
             },
-            handleCreate() {
-                this.book = {}
-            },
-            handleEdit(index, v) {
-                this.book = Object.assign(v)
-            },
             handleDelete(index, v) {
                 this.destroy(v.id)
                     .then(() => this.getList())
@@ -190,28 +166,6 @@
                     field: ''
                 }
                 this.getList()
-            },
-            handleDialogOpen(index, item) {
-                if (item) {
-                    this.book = Object.assign({}, item)
-                }
-                this.dialogVisible = true
-            },
-            handleDialogClose() {
-                this.book = {}
-                this.dialogVisible = false
-            },
-            handleDialogSubmit() {
-                this.dialogVisible = false
-                if ('id' in this.book) {
-                    this.update(this.book)
-                        .then(() => this.getList())
-                        .then(() => { this.book = {} })
-                } else {
-                    this.create(this.book)
-                        .then(() => this.getList())
-                        .then(() => { this.book = {} })
-                }
             }
         },
         created() {
