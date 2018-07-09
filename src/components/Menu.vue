@@ -2,7 +2,7 @@
     <div id="menu">
         <el-row type="flex" justify="start">
             <el-menu router="true" :default-active="activeIndex" class="flex w-100">
-                <el-col index="/" class="flex flex-column w-70">
+                <el-col class="flex flex-column w-70">
                     <el-menu-item index="/" class="flex flex-column w-10 hover-bg-white sign-button active">
                         Home
                     </el-menu-item>
@@ -27,10 +27,11 @@
                 width="30%"
                 :visible.sync="dialogVisible"
                 @close="handleDialogClose">
+
             <Cart/>
 
             <span slot="footer" class="dialog-footer">
-                <el-button type="warning" @click="handleDialogSubmit">
+                <el-button type="warning" class="confirm-cart" @click="handleDialogSubmit">
                     <b>Confirm</b>
                 </el-button>
             </span>
@@ -76,5 +77,13 @@
         .sign-button {
             font-size: 1em;
         }
+    }
+
+    .el-dialog__body {
+        padding: 0;
+    }
+
+    .confirm-cart {
+        font-size: .8em;
     }
 </style>
