@@ -4,10 +4,13 @@
             <div class="flex">
                 <div class="flex flex-column items-start w-25">
                     <span class="f6">Ключевые слова</span>
+
                     <el-input class="mt2" v-model="filters.search"></el-input>
                 </div>
+
                 <div class="flex flex-column items-start w-25 ml4">
                     <span class="f6">Сортировать по</span>
+
                     <el-select v-model="filters.field" placeholder="Select" class="mt2 w-100" clearable>
                         <el-option
                                 v-for="(item, index) in ['title', 'author', 'description', 'date']"
@@ -17,32 +20,20 @@
                         </el-option>
                     </el-select>
                 </div>
-                <div class="flex flex-column items-start w-25 ml4">
-                    <span class="f6">Направление сортировки</span>
-                    <el-switch
-                            class="mt2 pa3 br2 ba b--black-10 bg-white"
-                            v-model="filters.sort"
-                            active-color="#13ce66"
-                            inactive-color="#ff4949"
-                            active-value="asc"
-                            inactive-value="desc"
-                            active-text="Возрастание"
-                            inactive-text="Убывание">
-                    </el-switch>
-                </div>
             </div>
+
             <div class="flex">
                 <el-button
                         class="mt3"
                         type="primary"
                         @click="handleSearch"
-                        icon="el-icon-search">Поиск</el-button>
+                        icon="el-icon-search">Find</el-button>
                 <el-button
                         class="mt3"
                         type="warning"
                         plain
                         @click="handleClear"
-                        icon="el-icon-close">Очистить</el-button>
+                        icon="el-icon-close">Clear</el-button>
             </div>
         </div>
 
@@ -85,18 +76,6 @@
                 </template>
             </el-table-column>
         </el-table>
-
-        <div class="mt4 tl">
-            <el-pagination
-                    @size-change="handleSizeChange"
-                    @current-change="handleSearch"
-                    :current-page.sync="filters.page"
-                    :page-size="filters.count"
-                    :page-sizes="[10, 100, 200, 500, 1000]"
-                    layout="total, sizes, prev, pager, next"
-                    :total="total">
-            </el-pagination>
-        </div>
     </div>
 </template>
 
@@ -117,11 +96,7 @@
                 dialogVisible: false,
                 book: {},
                 filters: {
-                    search: '',
-                    count: 10,
-                    page: 1,
-                    sort: 'desc',
-                    field: ''
+                    search: ''
                 }
             }
         },
@@ -146,10 +121,6 @@
                 this.destroy(v.id)
                     .then(() => this.getList())
             },
-            handleSizeChange(v) {
-                this.$set(this.filters, 'count', v)
-                this.handleSearch()
-            },
             handleSearch() {
                 const params = Object.keys(this.filters).reduce((obj, k) => {
                     if (this.filters[k]) obj[k] = this.filters[k]
@@ -159,11 +130,7 @@
             },
             handleClear() {
                 this.filters = {
-                    search: '',
-                    count: 10,
-                    page: 1,
-                    sort: 'desc',
-                    field: ''
+                    search: ''
                 }
                 this.getList()
             }
