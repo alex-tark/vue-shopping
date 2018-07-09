@@ -1,5 +1,5 @@
 <template>
-    <div class="login pv4">
+    <div class="pv4">
     </div>
 </template>
 
