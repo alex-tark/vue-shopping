@@ -37,7 +37,7 @@ const testData = [
 ]
 
 function getData() {
-    // Mock server request
+    // axios?
     return new Promise(resolve => resolve(testData));
 }
 
