@@ -50,7 +50,7 @@
 
                     <el-col class="pa1 tl" :span="6">
                         <p>{{ product.date }}</p>
-                        <p>{{ product.inStock }}</p>
+                        <p>{{ formatter(product.inStock) }}</p>
                     </el-col>
 
                     <el-col class="pa1" :span="6">
@@ -97,6 +97,10 @@
                     if (this.filters[k]) obj[k] = this.filters[k]
                     return obj
                 }, {})
+            },
+
+            formatter(inStock) {
+                return inStock ? 'In stock' : 'Out of stock'
             },
 
             handleClear() {
