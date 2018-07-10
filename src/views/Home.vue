@@ -56,7 +56,7 @@
                     <el-col class="pa1" :span="6">
                         <p>{{ product.price }} $</p>
                         <el-button type="success" :disabled="!product.inStock"
-                                   @click="addToCart(product)" class="add-to-cart">BUY ONE!
+                                   @click="handleAddToCart(product)" class="add-to-cart">BUY ONE!
                         </el-button>
                     </el-col>
                 </el-row>
@@ -66,7 +66,6 @@
 </template>
 
 <script>
-    import moment from 'moment'
     import { mapGetters, mapActions } from 'vuex'
 
     export default {
@@ -89,12 +88,9 @@
         },
         methods: {
             ...mapActions([
-                'getList'
+                'getList',
+                'addToCart'
             ]),
-
-            formatDate({ date }) {
-                return moment(date).format('DD.MM.YYYY')
-            },
 
             handleSearch() {
                 const params = Object.keys(this.filters).reduce((obj, k) => {
@@ -111,6 +107,10 @@
                     }
                 }
                 this.getList()
+            },
+
+            handleAddToCart(product) {
+                this.addToCart(product)
             }
         },
         created() {

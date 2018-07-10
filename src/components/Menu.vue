@@ -17,7 +17,7 @@
                 </el-menu-item>
 
                 <el-button @click="handleDialogOpen" class="cart w-10 hover-bg-white" icon="el-icon-goods">
-                    Cart
+                    Cart({{ cartItemsNumber }})
                 </el-button>
             </el-menu>
         </el-row>
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+    import { mapGetters, mapActions } from 'vuex'
     import Cart from './Cart.vue'
 
     export default {
@@ -53,8 +54,20 @@
                 dialogVisible: false
             }
         },
+
+        computed: {
+            ...mapGetters([
+                'cartItems',
+                'cartItemsNumber'
+            ]),
+        },
+
         methods: {
-            handleDialogOpen(index, item) {
+            ...mapActions([
+                'getList'
+            ]),
+
+            handleDialogOpen() {
                 this.dialogVisible = true
             },
             handleDialogClose() {

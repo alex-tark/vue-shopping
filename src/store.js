@@ -38,7 +38,7 @@ const testData = [
 
 function getData() {
     // Mock server request
-    return new Promise(resolve => setTimeout(() => resolve(testData), 2000));
+    return new Promise(resolve => resolve(testData));
 }
 
 export default new Vuex.Store({
@@ -48,18 +48,28 @@ export default new Vuex.Store({
         list: [],
         filteredComponents: [],
         hasResults: false,
-        activeComponent: null
+        activeComponent: null,
+        cartItems: [],
+        cartItemsNumber: 0
     },
 
     getters: {
-        list: (state) => state.list
+        list: (state) => state.list,
+        cartItems: (state) => state.cartItems,
+        cartItemsNumber: (state) => state.cartItemsNumber
     },
 
     mutations: {
         siteContent(state, data) {
             state.list = data
+        },
+
+        addToCartContent(state, product) {
+            state.cartItems.push(product)
+            state.cartItemsNumber++
         }
     },
+
     actions: {
         getList({ commit }) {
             return getData().then(data => {
@@ -67,10 +77,8 @@ export default new Vuex.Store({
             });
         },
 
-        filter({ commit }, params) {
-            return api.get('', { params })
-                .then(res => commit('getSiteContent', res))
-                .catch(console.err) // eslint-disable-line no-console
-        },
+        addToCart({ commit }, product) {
+            commit('addToCartContent', product)
+        }
     },
 })
