@@ -48,7 +48,6 @@
         list-style: none;
 
         .product {
-            border-bottom: 1px solid #eee;
             p {
                 font-size: .8em;
             }

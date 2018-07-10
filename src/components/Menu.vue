@@ -68,7 +68,9 @@
             ]),
 
             handleDialogOpen() {
-                this.dialogVisible = true
+                if (this.cartItemsNumber !== 0) {
+                    this.dialogVisible = true
+                }
             },
             handleDialogClose() {
                 this.dialogVisible = false
