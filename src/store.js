@@ -14,7 +14,7 @@ const testData = [
         "inStock": true,
         "image": "some-href-to-stored-image"
     }
-];
+]
 
 function getData() {
     // Mock server request
