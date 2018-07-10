@@ -16,7 +16,7 @@
                     </div>
 
                     <div class="flex flex-column items-start w-20">
-                        <el-input class="mt2" v-model="filters.price.to"></el-input>
+                        <el-input class="mt2 add-to-cart" v-model="filters.price.to"></el-input>
                     </div>
                 </div>
             </div>
@@ -35,10 +35,38 @@
                         icon="el-icon-close">Clear</el-button>
             </div>
         </div>
+
+        <ul class="w-100 products">
+            <li v-for="product in list" class="product" :key="product">
+                <el-row type="flex" justify="start">
+                    <el-col class="pa1" :span="6">
+                        <img :src="product.image">
+                    </el-col>
+
+                    <el-col class="pa1 tl" :span="6">
+                        <p>{{ product.name }}</p>
+                        <p>{{ product.color }}</p>
+                    </el-col>
+
+                    <el-col class="pa1 tl" :span="6">
+                        <p>{{ product.date }}</p>
+                        <p>{{ product.inStock }}</p>
+                    </el-col>
+
+                    <el-col class="pa1" :span="6">
+                        <p>{{ product.price }} $</p>
+                        <el-button type="success" :disabled="!product.inStock"
+                                   @click="addToCart(product)" class="add-to-cart">BUY ONE!
+                        </el-button>
+                    </el-col>
+                </el-row>
+            </li>
+        </ul>
     </div>
 </template>
 
 <script>
+    import moment from 'moment'
     import { mapGetters, mapActions } from 'vuex'
 
     export default {
@@ -56,19 +84,25 @@
         },
         computed: {
             ...mapGetters([
-                'siteData'
+                'list'
             ]),
         },
         methods: {
             ...mapActions([
                 'getList'
             ]),
+
+            formatDate({ date }) {
+                return moment(date).format('DD.MM.YYYY')
+            },
+
             handleSearch() {
                 const params = Object.keys(this.filters).reduce((obj, k) => {
                     if (this.filters[k]) obj[k] = this.filters[k]
                     return obj
                 }, {})
             },
+
             handleClear() {
                 this.filters = {
                     price: {
@@ -101,6 +135,26 @@
             margin-top: 15px;
             padding-left: 20px;
             padding-right: 20px;
+        }
+
+        .products {
+            list-style: none;
+            padding-left: 0;
+
+            .product {
+                padding-left: 0;
+                border: 1px solid #ddd;
+                margin-bottom: 20px;
+
+                p {
+                    margin-bottom: 20px;
+                    padding-top: 20px;
+                }
+
+                .add-to-cart {
+                    margin-top: 15px;
+                }
+            }
         }
     }
 </style>

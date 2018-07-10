@@ -12,7 +12,27 @@ const testData = [
         "price": 2.55,
         "rating": 4.76,
         "inStock": true,
-        "image": "some-href-to-stored-image"
+        "image": "https://dummyimage.com/200x200/fff/000000.png"
+    },
+    {
+        "id": 2,
+        "name": "Other product",
+        "color": "White",
+        "date": "1997-10-03",
+        "price": 2.55,
+        "rating": 4.76,
+        "inStock": false,
+        "image": "https://dummyimage.com/200x200/fff/000000.png"
+    },
+    {
+        "id": 2,
+        "name": "Some product",
+        "color": "Green",
+        "date": "1997-10-03",
+        "price": 2.55,
+        "rating": 4.76,
+        "inStock": true,
+        "image": "https://dummyimage.com/200x200/fff/000000.png"
     }
 ]
 
@@ -25,19 +45,19 @@ export default new Vuex.Store({
     state: {
         isSearching: false,
         searchQuery: '',
-        siteData: [],
+        list: [],
         filteredComponents: [],
         hasResults: false,
         activeComponent: null
     },
 
     getters: {
-        siteData: (state) => state.siteData
+        list: (state) => state.list
     },
 
     mutations: {
         siteContent(state, data) {
-            state.data = data
+            state.list = data
         }
     },
     actions: {
