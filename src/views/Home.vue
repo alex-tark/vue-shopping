@@ -39,7 +39,6 @@
 </template>
 
 <script>
-    import moment from 'moment'
     import { mapGetters, mapActions } from 'vuex'
 
     export default {
@@ -57,27 +56,18 @@
         },
         computed: {
             ...mapGetters([
-                'list',
-                'total',
+                'siteData'
             ]),
         },
         methods: {
             ...mapActions([
-                'getList',
-                'destroy',
-                'filter',
-                'create',
-                'update'
+                'getList'
             ]),
-            formatDate({ date }) {
-                return moment(date).format('DD.MM.YYYY')
-            },
             handleSearch() {
                 const params = Object.keys(this.filters).reduce((obj, k) => {
                     if (this.filters[k]) obj[k] = this.filters[k]
                     return obj
                 }, {})
-                this.filter(params)
             },
             handleClear() {
                 this.filters = {

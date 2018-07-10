@@ -1,64 +1,61 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
-import Qs from 'qs'
-import moment from 'moment'
-
-const api = axios.create({
-    baseURL: `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3030}/api/books`,
-    headers: { 'X-Requested-With': 'XMLHttpRequest' },
-    timeout: 1000,
-    paramsSerializer: params => Qs.stringify(params, { arrayFormat: 'brackets' }),
-})
 
 Vue.use(Vuex)
 
+const testData = {
+    "global": {
+        "project_name": {
+            "text": "Project title"
+        },
+        "search": {
+            "form_placeholder": {
+                "text": "Search..."
+            },
+            "no_results": {
+                "text": "Sorry no results for '{0}' was found"
+            },
+            "search_text": {
+                "text": "You are searching for '{0}' and there are {1} found"
+            }
+        }
+    }
+};
+
+function getData() {
+    // Mock server request
+    return new Promise(resolve => setTimeout(() => resolve(testData), 2000));
+}
+
 export default new Vuex.Store({
     state: {
-        list: [],
-        total: 0,
+        isSearching: false,
+        searchQuery: '',
+        siteData: {},
+        filteredComponents: [],
+        hasResults: false,
+        activeComponent: null
     },
 
     getters: {
-        list: state => state.list,
-        total: state => state.total
+        siteData: (state) => state.siteData
     },
 
     mutations: {
-        SET_LIST(state, payload) {
-            state.list = payload.data.books
-            state.total = payload.data.total
+        siteContent(state, data) {
+            state.data = data
         }
     },
-
     actions: {
         getList({ commit }) {
-            return api.get()
-                .then(res => commit('SET_LIST', res))
-                .catch(console.err) // eslint-disable-line no-console
-        },
-
-        create(context, payload) {
-            return api.post('', payload)
-                .catch(console.err) // eslint-disable-line no-console
-        },
-
-        update(context, payload) {
-            const { id } = payload
-            if (payload.date) payload.date = moment(payload.date).format('YYYY-MM-DD')
-            delete payload.id
-            return api.put(`/${id}`, payload)
-                .catch(console.err) // eslint-disable-line no-console
-        },
-
-        destroy(context, id) {
-            return api.delete(`/${id}`)
-                .catch(console.err) // eslint-disable-line no-console
+            return getData().then(data => {
+                commit('siteContent', data);
+            });
         },
 
         filter({ commit }, params) {
             return api.get('', { params })
-                .then(res => commit('SET_LIST', res))
+                .then(res => commit('getSiteContent', res))
                 .catch(console.err) // eslint-disable-line no-console
         },
     },
