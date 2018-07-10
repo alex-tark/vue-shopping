@@ -3,24 +3,18 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const testData = {
-    "global": {
-        "project_name": {
-            "text": "Project title"
-        },
-        "search": {
-            "form_placeholder": {
-                "text": "Search..."
-            },
-            "no_results": {
-                "text": "Sorry no results for '{0}' was found"
-            },
-            "search_text": {
-                "text": "You are searching for '{0}' and there are {1} found"
-            }
-        }
+const testData = [
+    {
+        "id": 1,
+        "name": "Some product",
+        "color": "Red",
+        "date": "1997-10-03",
+        "price": 2.55,
+        "rating": 4.76,
+        "inStock": true,
+        "image": "some-href-to-stored-image"
     }
-};
+];
 
 function getData() {
     // Mock server request
