@@ -1,7 +1,7 @@
 <template>
-    <div id="menu">
+    <div>
         <el-row type="flex" justify="start">
-            <el-menu router="true" :default-active="activeIndex" class="flex w-100">
+            <el-menu :router="true" :default-active="activeIndex" class="flex w-100">
                 <el-col class="flex flex-column w-70">
                     <el-menu-item index="/" class="flex flex-column w-10 hover-bg-white sign-button active">
                         Home
@@ -68,15 +68,13 @@
 </script>
 
 <style lang="scss">
-    #menu {
-        .cart {
-            font-size: 1em;
-            border: none;
-        }
+    .cart {
+        font-size: 1em;
+        border: none;
+    }
 
-        .sign-button {
-            font-size: 1em;
-        }
+    .sign-button {
+        font-size: 1em;
     }
 
     .el-dialog__body {
