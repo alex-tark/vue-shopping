@@ -25,7 +25,7 @@ export default new Vuex.Store({
     state: {
         isSearching: false,
         searchQuery: '',
-        siteData: {},
+        siteData: [],
         filteredComponents: [],
         hasResults: false,
         activeComponent: null
